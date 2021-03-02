@@ -20,8 +20,26 @@
     </style>
 
     <script>
+        let startLoading = false;
+
         function startLoadingBar() {
-            
+            if (startLoading == false) {
+                startLoading = true;
+                let width = 1;
+
+                var elem = document.getElementById("progress");
+                let id = setInterval(loading, 100);
+                function loading() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                        startLoading = false;
+                    }
+                    else {
+                        width++;
+                        elem.style.width = width + "%";
+                    }
+                }
+            }
         }
     </script>
 </head>
