@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading Bar Using a Timer</title>
+    <title>Loading Bar Using a Timer and Arrow Functions</title>
 
     <style>
+        body {
+            margin-left: 15%;
+            margin-right: 15%;
+            padding-bottom: 10%;
+            text-align: center;
+            border: 2px solid black;
+        }
+
         #loadingBar {
             background-color: grey;
             width: 100%;
@@ -17,26 +25,28 @@
             width: 0%;
             height: 30px;
         }
+
+        button {
+            font-size: 22px;
+        }
     </style>
 
     <script>
         let startLoading = false;
 
-        function startLoadingBar() {
+        const startLoadingBar = () => {
             if (startLoading == false) {
                 startLoading = true;
-                let width = 1;
-
-                var elem = document.getElementById("progress");
+                let currentProgress = 0;
                 let id = setInterval(loading, 100);
                 function loading() {
-                    if (width >= 100) {
+                    if (currentProgress >= 100) {
                         clearInterval(id);
                         startLoading = false;
                     }
                     else {
-                        width++;
-                        elem.style.width = width + "%";
+                        currentProgress++;
+                        document.getElementById("progress").style.width = currentProgress + "%";
                     }
                 }
             }
@@ -44,11 +54,20 @@
     </script>
 </head>
 <body>
-    <h1>Loading Bar Using a Timer</h1>
+    <h1>Loading Bar Using a Timer and Arrow Functions</h1>
+    
+    <br><br>
+    <button type="button" onclick="">Slower</button>
+    <button type="button" onclick="">Faster</button>
+
+    <br><br>
+
     <div id="loadingBar">
         <div id="progress"></div>
     </div>
+
     <br>
+    
     <button type="button" onclick="startLoadingBar()">Start</button>
 </body>
 </html>
