@@ -33,12 +33,13 @@
 
     <script>
         let startLoading = false;
+        let timeInterval = 100;
 
         const startLoadingBar = () => {
             if (startLoading == false) {
                 startLoading = true;
                 let currentProgress = 0;
-                let id = setInterval(loading, 100);
+                let id = setInterval(loading, timeInterval);
                 function loading() {
                     if (currentProgress >= 100) {
                         clearInterval(id);
@@ -51,14 +52,35 @@
                 }
             }
         }
+
+        const decreaseSpeed = () => {
+            if (timeInterval >= 1000) {
+                timeInterval = 1000;
+            }
+            else {
+                timeInterval += 50;
+            }
+        }
+
+        const increaseSpeed = () => {
+            if (timeInterval <= 10) {
+                timeInterval = 10;
+            }
+            else if (timeInterval <= 100) {
+                timeInterval -= 50;
+            }
+            else {
+                timeInterval -= 100;
+            }
+        }
     </script>
 </head>
 <body>
     <h1>Loading Bar Using a Timer and Arrow Functions</h1>
     
     <br><br>
-    <button type="button" onclick="">Slower</button>
-    <button type="button" onclick="">Faster</button>
+    <button type="button" onclick="decreaseSpeed()">Slower</button>
+    <button type="button" onclick="increaseSpeed()">Faster</button>
 
     <br><br>
 
