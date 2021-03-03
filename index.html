@@ -6,79 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading Bar Using a Timer and Arrow Functions</title>
 
-    <style>
-        body {
-            margin-left: 15%;
-            margin-right: 15%;
-            padding-bottom: 10%;
-            text-align: center;
-            border: 2px solid black;
-        }
-
-        #loadingBar {
-            background-color: grey;
-            width: 100%;
-        }
-
-        #progress {
-            background-color: blue;
-            width: 0%;
-            height: 30px;
-        }
-
-        button {
-            font-size: 22px;
-        }
-    </style>
-
-    <script>
-        let startLoading = false;
-        let timeInterval = 100;
-
-        const startLoadingBar = () => {
-            if (startLoading == false) {
-                startLoading = true;
-                let currentProgress = 0;
-                let id = setInterval(loading, timeInterval);
-                function loading() {
-                    if (currentProgress >= 100) {
-                        clearInterval(id);
-                        startLoading = false;
-                    }
-                    else {
-                        currentProgress++;
-                        document.getElementById("progress").style.width = currentProgress + "%";
-                    }
-                }
-            }
-        }
-
-        const decreaseSpeed = () => {
-            if (timeInterval >= 1000) {
-                timeInterval = 1000;
-            }
-            else {
-                timeInterval += 50;
-            }
-        }
-
-        const increaseSpeed = () => {
-            if (timeInterval <= 10) {
-                timeInterval = 10;
-            }
-            else if (timeInterval <= 100) {
-                timeInterval -= 50;
-            }
-            else {
-                timeInterval -= 100;
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="loadingBarPageStyles.css">
+    <script src="loadingBarPageScripts.js"></script>
 </head>
+
+
 <body>
     <h1>Loading Bar Using a Timer and Arrow Functions</h1>
     
     <br><br>
+    <p>Change the speed of the loading bar:</p>
     <button type="button" onclick="decreaseSpeed()">Slower</button>
     <button type="button" onclick="increaseSpeed()">Faster</button>
 
@@ -90,6 +27,7 @@
 
     <br>
     
+    <p>Press to begin:</p>
     <button type="button" onclick="startLoadingBar()">Start</button>
 </body>
 </html>
